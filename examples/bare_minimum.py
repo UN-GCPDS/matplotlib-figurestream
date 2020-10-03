@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # FigureStream can be used like any Figure object
-stream = FigureStream(port='5500', endpoint='figure.jpeg')
+stream = FigureStream(port='5500', endpoint='figure')
 sub = stream.add_subplot(111)
 x = np.linspace(0, 3, 1000)
 

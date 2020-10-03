@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='figurestream',
-    version='1.0a1',
+    version='1.0a2',
     packages=['figurestream'],
 
     author='Yeison Cardona',

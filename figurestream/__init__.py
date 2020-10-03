@@ -7,7 +7,7 @@ from queue import Queue
 from threading import Thread
 
 from matplotlib.figure import Figure
-from flask import Flask, Response, request
+from flask import Flask, Response, request, render_template_string
 
 
 ########################################################################
@@ -90,9 +90,13 @@ class FigureStream(Figure):
         self.size = 'auto'
         # self.tight_layout(rect=[0, 0.03, 1, 0.95])
 
+        if endpoint in ['figure.jpeg', 'mode', 'feed']:
+            logging.error(f'The endpoint {endpoint} is already taken for internal use.')
+            return
+
         self.app = Flask(__name__)
-        self.app.add_url_rule(f'/{endpoint}', view_func=self._video_feed)
-        # self.app.add_url_rule('/figure.jpeg', view_func=self._video_feed)
+        self.app.add_url_rule(f'/figure.jpeg', view_func=self._video_feed)
+        self.app.add_url_rule(f'/{endpoint}', view_func=self.figure_template)
         self.app.add_url_rule('/mode', view_func=self._mode)
         self.app.add_url_rule('/feed', view_func=self._feed)
 
@@ -107,10 +111,19 @@ class FigureStream(Figure):
         ).start()
 
     # ----------------------------------------------------------------------
+    def figure_template(self):
+        """"""
+        if background := request.values.get('background', None):
+            style = f'background-color: #{background};'
+        else:
+            style = ''
+        get = '&'.join([f'{k}={v}' for k, v in request.values.items()])
+        return Response(render_template_string(f"<html><body style='margin: 0; {style}'><img src='/figure.jpeg?{get}'></img></body></html>"))
+
+    # ----------------------------------------------------------------------
     def _feed(self):
         """"""
         self.feed()
-        return 'true'
 
     # ----------------------------------------------------------------------
     def _mode(self):
@@ -192,7 +205,7 @@ class FigureStream(Figure):
 
             # wait until frames are available
             while self._get_frames() is None:
-                time.sleep(1)
+                time.sleep(0.1)
 
         self.feed()
         return Response(

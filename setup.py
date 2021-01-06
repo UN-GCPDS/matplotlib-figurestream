@@ -23,7 +23,7 @@ setup(
 
     include_package_data=True,
     license='BSD-2-Clause',
-    description="Matplotlib FigureStream",
+    description="A backend for serve Matplotlib animations as web streams.",
 
     long_description=README,
     long_description_content_type='text/markdown',
@@ -38,6 +38,7 @@ setup(
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Scientific/Engineering :: Human Machine Interfaces',

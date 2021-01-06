@@ -4,28 +4,10 @@ import threading
 import logging
 from io import BytesIO
 from queue import Queue
-# from cycler import cycler
 from threading import Thread
-# from multiprocessing import Process
 
-# import mne
-import matplotlib
-# import numpy as np
-# from matplotlib import pyplot
 from matplotlib.figure import Figure
 from flask import Flask, Response, request
-
-# from ..projects import properties as prop
-
-# pyplot.style.use('dark_background')
-# q = matplotlib.cm.get_cmap('rainbow')
-# matplotlib.rcParams['axes.prop_cycle'] = cycler(
-    # color=[q(m) for m in np.linspace(0, 1, 16)]
-# )
-
-# matplotlib.rcParams['figure.dpi'] = 60
-# matplotlib.rcParams['font.family'] = 'monospace'
-# matplotlib.rcParams['font.size'] = 15
 
 
 ########################################################################

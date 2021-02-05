@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='figurestream',
-    version='1.0',
+    version='1.1',
     packages=['figurestream'],
 
     author='Yeison Cardona',
@@ -23,7 +23,7 @@ setup(
 
     include_package_data=True,
     license='BSD-2-Clause',
-    description="A backend for serve Matplotlib animations as web streams.",
+    description="A Matplotlib.Figure fork with real-time plot streaming features.",
 
     long_description=README,
     long_description_content_type='text/markdown',
@@ -32,7 +32,13 @@ setup(
 
 
     classifiers=[
-        'Development Status :: 4 - Beta',
+        # 'Development Status :: 1 - Planning',
+        # 'Development Status :: 2 - Pre-Alpha',
+        # 'Development Status :: 3 - Alpha',
+        # 'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
+        # 'Development Status :: 6 - Mature',
+        # 'Development Status :: 7 - Inactive',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
         'Intended Audience :: Science/Research',

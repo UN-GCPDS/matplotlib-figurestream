@@ -91,7 +91,8 @@ class FigureStream(Figure):
         # self.tight_layout(rect=[0, 0.03, 1, 0.95])
 
         if endpoint in ['figure.jpeg', 'mode', 'feed']:
-            logging.error(f'The endpoint {endpoint} is already taken for internal use.')
+            logging.error(
+                f'The endpoint {endpoint} is already taken for internal use.')
             return
 
         self.app = Flask(__name__)
@@ -178,10 +179,10 @@ class FigureStream(Figure):
             width = request.values.get('width', None)
             height = request.values.get('height', None)
             if (
-                width and
-                height and
-                width.replace('.', '').isdigit() and
-                height.replace('.', '').isdigit()
+                width
+                and height
+                and width.replace('.', '').isdigit()
+                and height.replace('.', '').isdigit()
             ):
                 self.set_size_inches(float(width), float(height))
 
@@ -223,3 +224,9 @@ class FigureStream(Figure):
         )
 
         return self.__buffer.put(self.__output.getvalue())
+
+    # ----------------------------------------------------------------------
+    def show(self, *args, **kwargs):
+        """"""
+        self.feed()
+

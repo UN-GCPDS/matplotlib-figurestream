@@ -103,20 +103,23 @@ For fast updates is recommended to use ``set_data``, ``set_ydata`` and
                 self.line2.set_ydata(np.sin(2 * np.pi * 0.5 * (self.x + datetime.now().timestamp())))
                 # ------------------------------------------------------------------------
                 
-                self.feed() # push the frame into the server
+                self.feed()  # push the frame into the server
     
     
     if __name__ == '__main__':
         FastAnimation()
 
-Change port and endpoint
-------------------------
+Set host, port and endpoint
+---------------------------
 
 If we want to serve the stream in a different place we can use the
-parameters ``port`` and ``endpoint``, for example:
+parameters ``host``, ``port`` and ``endpoint``, for example:
 
 .. code:: ipython3
 
-    FigureStream(port='5500', endpoint='figure.jpeg')
+    FigureStream(host='0.0.0.0', port='5500', endpoint='figure.jpeg')
 
-now the stream will serve on http://localhost:5500/figure.jpeg
+| Now the stream will serve on http://localhost:5500/figure.jpeg and due
+  the ``0.0.0.0`` host is accesible for any device on network.
+| By default ``host`` is ``localhost``, ``port`` is ``5000`` and
+  endopoint is empty.

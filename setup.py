@@ -4,12 +4,9 @@ from setuptools import setup
 with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
     README = readme.read()
 
-with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
-
 setup(
     name='figurestream',
-    version='1.1',
+    version='1.2',
     packages=['figurestream'],
 
     author='Yeison Cardona',
@@ -19,7 +16,9 @@ setup(
 
     download_url='https://github.com/UN-GCPDS/matplotlib-figurestream',
 
-    install_requires=requirements,
+    install_requires=['matplotlib==3.3.4',
+                      'Flask==1.1.2',
+                      ],
 
     include_package_data=True,
     license='BSD-2-Clause',

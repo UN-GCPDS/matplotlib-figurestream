@@ -24,7 +24,6 @@ class StreamEvent:
     # ----------------------------------------------------------------------
     def wait(self):
         """Invoked from each client's thread to wait for the next frame."""
-        logging.debug('Waiting...')
         ident = threading.get_ident()
         if ident not in self.events:
             # this is a new client
@@ -36,8 +35,6 @@ class StreamEvent:
     # ----------------------------------------------------------------------
     def set(self):
         """Invoked by the stream thread when a new frame is available."""
-
-        logging.debug('Setting...')
 
         now = time.time()
         to_remove = []
@@ -62,7 +59,6 @@ class StreamEvent:
     # ----------------------------------------------------------------------
     def clear(self):
         """Invoked from each client's thread after a frame was processed."""
-        logging.debug('Clearing...')
         self.events[threading.get_ident()][0].clear()
 
 
@@ -161,7 +157,7 @@ class FigureStream(Figure):
 
             self.__class_attr['frame'] = frame
             self.__class_attr['event'].set()  # send signal to clients
-            time.sleep(0)
+            # time.sleep(0)
 
             # # if there hasn't been any clients asking for frames in
             # # the last 60 seconds then stop the thread
@@ -208,7 +204,7 @@ class FigureStream(Figure):
             while self._get_frames() is None:
                 time.sleep(0.1)
 
-        self.feed()
+        # self.feed()
         return Response(
             self._get_frames(),
             mimetype='multipart/x-mixed-replace; boundary=frame',
@@ -225,8 +221,8 @@ class FigureStream(Figure):
 
         return self.__buffer.put(self.__output.getvalue())
 
-    # ----------------------------------------------------------------------
-    def show(self, *args, **kwargs):
-        """"""
-        self.feed()
+    # # ----------------------------------------------------------------------
+    # def show(self, *args, **kwargs):
+        # """"""
+        # self.feed()
 

@@ -115,7 +115,20 @@ class FigureStream(Figure):
         else:
             style = ''
         get = '&'.join([f'{k}={v}' for k, v in request.values.items()])
-        return Response(render_template_string(f"<html><body style='margin: 0; {style}'><img src='/figure.jpeg?{get}'></img></body></html>"))
+        html = f"""
+
+        <html>
+          <body style='margin: 0;
+                       background-image: url("/figure.jpeg?{get}");
+                       background-repeat: no-repeat;
+                       background-size: cover;
+                       {style}
+                       '>
+          </body>
+        </html>
+        """
+
+        return Response(render_template_string(html))
 
     # ----------------------------------------------------------------------
     def _feed(self):
@@ -175,10 +188,10 @@ class FigureStream(Figure):
             width = request.values.get('width', None)
             height = request.values.get('height', None)
             if (
-                width
-                and height
-                and width.replace('.', '').isdigit()
-                and height.replace('.', '').isdigit()
+                width and
+                height and
+                width.replace('.', '').isdigit() and
+                height.replace('.', '').isdigit()
             ):
                 self.set_size_inches(float(width), float(height))
 

@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 
 setup(
     name='figurestream',
-    version='1.2',
+    version='1.2.1',
     packages=['figurestream'],
 
     author='Yeison Cardona',

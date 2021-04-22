@@ -116,7 +116,6 @@ class FigureStream(Figure):
             style = ''
         get = '&'.join([f'{k}={v}' for k, v in request.values.items()])
         html = f"""
-
         <html>
           <body style='margin: 0;
                        background-image: url("/figure.jpeg?{get}");
@@ -127,7 +126,6 @@ class FigureStream(Figure):
           </body>
         </html>
         """
-
         return Response(render_template_string(html))
 
     # ----------------------------------------------------------------------

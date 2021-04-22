@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 
 setup(
     name='figurestream',
-    version='1.2.1',
+    version='1.2.3',
     packages=['figurestream'],
 
     author='Yeison Cardona',
@@ -16,8 +16,8 @@ setup(
 
     download_url='https://github.com/UN-GCPDS/matplotlib-figurestream',
 
-    install_requires=['matplotlib==3.3.4',
-                      'Flask==1.1.2',
+    install_requires=['matplotlib',
+                      'Flask',
                       ],
 
     include_package_data=True,
